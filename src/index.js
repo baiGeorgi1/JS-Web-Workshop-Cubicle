@@ -2,17 +2,14 @@ const express = require('express');
 const PORT = 5000;
 const handlebars = require('express-handlebars');
 const path = require('path');
+const expConfigurator = require('./config/expConfig');
+const hbsConfigurator = require('./config/hbsConfig');
 
 const app = express();
 //express config
-app.use(express.static(path.resolve(__dirname, 'public')));
-
+expConfigurator(app);
 //handlebars setup
-app.engine('hbs', handlebars.engine({
-    extname: 'hbs',
-}));
-app.set('view engine', 'hbs');
-app.set('views', 'src/views');
+hbsConfigurator(app);
 
 //Routes
 app.get('/', (req, res) => {
