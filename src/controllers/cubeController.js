@@ -3,8 +3,12 @@ const cubeManager = require('../managers/cubeManager');
 
 //path comming as '/cubes/anyPath
 router.get('/create', (req, res) => {
-    console.log(cubeManager.getAll());
     res.render('create');
+});
+router.get('/details/:cubeId', (req, res) => {
+    const cube = cubeManager.getById(req.params.cubeId);
+    res.render('details', (cube));
+
 });
 
 router.post('/create', (req, res) => { //тук взимаме данни от bodyParser-a
@@ -13,12 +17,12 @@ router.post('/create', (req, res) => { //тук взимаме данни от b
         name,
         description,
         imageUrl,
-        difficulty } = req.body;
+        difficultyLevel } = req.body;
     cubeManager.create({
         name,
         description,
         imageUrl,
-        difficulty: Number(difficulty)
+        difficultyLvl: Number(difficultyLevel)
     });
 
     res.redirect('/');

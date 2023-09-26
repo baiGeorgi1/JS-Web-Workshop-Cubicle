@@ -1,3 +1,4 @@
+const uniqId = require('uniqid');
 const cubes = [
     {
         id: "HTB1CSddXRxRMKJjy0Fdq6yifFXa6",
@@ -28,12 +29,20 @@ const cubes = [
     },
 ];
 exports.getAll = () => cubes.slice();
+exports.getById = (cubeId) => {
+    const found = cubes.find(x => x.id === cubeId);
+    console.log(found);
+    return found;
+};
+
 
 exports.create = (cubeData) => { //or allData as name,description,difficultyLVL,image
+
     const newCube = {
-        id: cubes.length + 1,
+        id: uniqId(),
         ...cubeData
     };
     cubes.push(newCube);
+
     return newCube;
 }; 
