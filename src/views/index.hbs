@@ -1,9 +1,9 @@
 <main>
   <h1>Browser</h1>
-  <form action="" method="">
-    <input type="text" class="search" name="search" placeholder="Search..." />
+  <form action="/" method="GET">
+    <input type="text" class="search" value="{{search}}" name="search" placeholder="Search..." />
     <input
-      type="number"
+      type="number" value="{{from}}"
       name="from"
       class="difficulty"
       placeholder="Difficulty from..."
@@ -11,6 +11,7 @@
     <span>-</span>
     <input
       type="number"
+      value="{{to}}"
       name="to"
       class="difficulty"
       placeholder="Difficulty to..."

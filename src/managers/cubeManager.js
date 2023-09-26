@@ -28,7 +28,19 @@ const cubes = [
         description: "Magnets in AirSM will not drop, and their positions will be more precise with the Magnets-Snap-On design. With the use of 3mm*2mm magnets, the handfeel will be more stable and more comfortable.",
     },
 ];
-exports.getAll = () => cubes.slice();
+exports.getAll = (search, from, to) => {
+    let result = cubes.slice();
+
+    if (search) {
+        result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));
+
+    } else if (from) {
+        result = result.filter(cube => cube.difficultyLvl >= Number(from));
+    } else if (to) {
+        result = result.filter(cube => cube.difficultyLvl <= Number(to));
+    }
+    return result;
+};
 exports.getById = (cubeId) => {
     const found = cubes.find(x => x.id === cubeId);
     console.log(found);
