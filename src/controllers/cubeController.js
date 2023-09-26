@@ -18,7 +18,7 @@ router.post('/create', (req, res) => { //тук взимаме данни от b
         name,
         description,
         imageUrl,
-        difficulty
+        difficulty: Number(difficulty)
     });
 
     res.redirect('/');
